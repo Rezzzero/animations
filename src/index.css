@@ -1,1 +1,15 @@
+@font-face {
+  font-family: Knewave;
+  src: url("./fonts/Knewave-Regular.ttf");
+}
+
 @import "tailwindcss";
+
+.knewave {
+  font-family: Knewave, sans-serif;
+}
+
+body {
+  background-color: black;
+  color: white;
+}

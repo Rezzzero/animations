@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Drag from "../drag/Drag";
+import { Main } from "../pages/Main";
+import { Tailwind } from "../pages/Tailwind";
+import { FramerMotion } from "../pages/FramerMotion";
 
 export const router = createBrowserRouter([
   {
@@ -9,15 +11,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Drag />,
+        element: <Main />,
       },
       {
         path: "/tailwind",
-        element: <h1>Tailwind</h1>,
+        element: <Tailwind />,
       },
       {
         path: "/framer-motion",
-        element: <h1>Framer Motion</h1>,
+        element: <FramerMotion />,
       },
     ],
   },
