@@ -2,7 +2,7 @@ import type { Variants } from "framer-motion";
 import { motion } from "framer-motion";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { NavLinkList } from "../../../constants/constants";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar({
   isOpen,
@@ -25,9 +25,15 @@ export default function Sidebar({
           ref={containerRef}
           style={nav}
         >
-          <motion.div style={background} variants={sidebarVariants} />
+          <motion.div
+            style={background}
+            className={`${
+              isOpen ? "bg-violet-800" : "bg-white"
+            } transition-colors duration-300 ease-in-out`}
+            variants={sidebarVariants}
+          />
           <Navigation />
-          <MenuToggle toggle={() => setIsOpen(!isOpen)} />
+          <MenuToggle toggle={() => setIsOpen(!isOpen)} isOpen={isOpen} />
         </motion.nav>
       </div>
     </div>
@@ -73,6 +79,7 @@ const SidebarItem = ({
 }: {
   link: { path: string; title: string; logo: string };
 }) => {
+  const location = useLocation();
   return (
     <motion.li
       style={listItem}
@@ -82,7 +89,11 @@ const SidebarItem = ({
     >
       <Link
         to={link.path}
-        className="flex gap-3 items-center knewave text-black"
+        className={`flex gap-3 p-2 w-full items-center knewave cursour-pointer rounded-md ${
+          link.path === location.pathname
+            ? "bg-violet-950"
+            : "hover:bg-violet-900 duration-300 ease-in-out"
+        } `}
       >
         <img src={link.logo} alt={link.title + " logo"} className="w-5 h-5" />
         {link.title}
@@ -121,14 +132,26 @@ const Path = (props: PathProps) => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
-    stroke="hsl(0, 0%, 18%)"
+    stroke="currentColor"
     strokeLinecap="round"
     {...props}
   />
 );
 
-const MenuToggle = ({ toggle }: { toggle: () => void }) => (
-  <button style={toggleContainer} onClick={toggle}>
+const MenuToggle = ({
+  toggle,
+  isOpen,
+}: {
+  toggle: () => void;
+  isOpen: boolean;
+}) => (
+  <button
+    style={toggleContainer}
+    onClick={toggle}
+    className={`${
+      isOpen ? "text-white" : "text-black"
+    } transition-colors duration-300 ease-in-out`}
+  >
     <svg width="20" height="20" viewBox="0 0 23 23">
       <Path
         variants={{
@@ -172,7 +195,6 @@ const nav: React.CSSProperties = {
 };
 
 const background: React.CSSProperties = {
-  backgroundColor: "#f5f5f5",
   position: "absolute",
   top: 0,
   left: 0,
@@ -204,16 +226,9 @@ const list: React.CSSProperties = {
   margin: 0,
   position: "absolute",
   top: 80,
-  width: 230,
+  width: 300,
 };
 
 const listItem: React.CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-start",
-  padding: 0,
-  margin: 0,
   listStyle: "none",
-  marginBottom: 20,
-  cursor: "pointer",
 };
