@@ -3,7 +3,7 @@ import { NavLink } from "../../nav-link/NavLink";
 import { NavLinkList } from "../../../constants/constants";
 import Sidebar from "../sidebar/Sidebar";
 import { useRef, useState, useEffect } from "react";
-// import "./Navbar.css";
+import "./Navbar.css";
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,9 +28,9 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="flex w-full bg-violet-800 h-[50px]">
-        <div className="container mx-auto sm:py-5 sm:px-0 flex knewave lg:text-xl xl:text-2xl items-center relative">
-          <div className="absolute top-0 left-0 w-full z-20 sm:hidden">
+      <div className="flex w-full bg-violet-800 h-[50px] overflow-hidden relative">
+        <div className="container mx-auto sm:py-5 sm:px-0 flex knewave lg:text-xl xl:text-2xl items-center relative z-20">
+          <div className="fixed top-0 left-0 w-full z-20 sm:hidden">
             <Sidebar
               isOpen={isOpen}
               setIsOpen={setIsOpen}
@@ -46,9 +46,9 @@ export const Navbar = () => {
             ))}
           </ul>
         </div>
-        {/* {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+        {[0, 1, 2, 3, 4, 5].map((i) => (
           <div key={i} className="cube" />
-        ))} */}
+        ))}
       </div>
       {isOpen && (
         <div className="absolute top-0 left-0 bg-black/60 z-10 w-full h-full" />

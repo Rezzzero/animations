@@ -188,6 +188,7 @@ const container: React.CSSProperties = {
   height: "100vh",
   backgroundColor: "var(--accent)",
   overflow: "hidden",
+  zIndex: 30,
 };
 
 const nav: React.CSSProperties = {

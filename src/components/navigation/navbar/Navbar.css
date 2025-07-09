@@ -1,47 +1,47 @@
 .cube {
   position: absolute;
-  top: 80vh;
+  top: 10px;
   left: 45vw;
   width: 10px;
   height: 10px;
-  border: solid 1px #680098;
+  border: solid 1px #00ffff;
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   -webkit-animation: cube 12s ease-in forwards infinite;
   animation: cube 12s ease-in forwards infinite;
 }
 .cube:nth-child(2n) {
-  border-color: #bb00f4;
+  border-color: #ff0000;
 }
 .cube:nth-child(2) {
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
   left: 25vw;
-  top: 40vh;
+  top: 5px;
 }
 .cube:nth-child(3) {
   -webkit-animation-delay: 4s;
   animation-delay: 4s;
   left: 75vw;
-  top: 50vh;
+  top: 20px;
 }
 .cube:nth-child(4) {
   -webkit-animation-delay: 6s;
   animation-delay: 6s;
   left: 90vw;
-  top: 10vh;
+  top: 15px;
 }
 .cube:nth-child(5) {
   -webkit-animation-delay: 8s;
   animation-delay: 8s;
   left: 10vw;
-  top: 85vh;
+  top: 25px;
 }
 .cube:nth-child(6) {
   -webkit-animation-delay: 10s;
   animation-delay: 10s;
   left: 50vw;
-  top: 10vh;
+  top: 0px;
 }
 
 @-webkit-keyframes cube {
