@@ -152,7 +152,7 @@ const MenuToggle = ({
       isOpen ? "text-white" : "text-black"
     } transition-colors duration-300 ease-in-out`}
   >
-    <svg width="20" height="20" viewBox="0 0 23 23">
+    <svg width="21" height="20" viewBox="0 0 23 23">
       <Path
         variants={{
           closed: { d: "M 2 2.5 L 20 2.5" },
@@ -213,8 +213,8 @@ const toggleContainer: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  top: 18,
-  left: 15,
+  top: 17,
+  left: 14,
   width: 22,
   height: 20,
   borderRadius: "50%",

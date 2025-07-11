@@ -29,14 +29,14 @@ export const Navbar = () => {
   return (
     <>
       <div className="flex w-full bg-violet-800 h-[50px] overflow-hidden relative">
-        <div className="container mx-auto sm:py-5 sm:px-0 flex knewave lg:text-xl xl:text-2xl items-center relative z-20">
-          <div className="fixed top-0 left-0 w-full z-20 sm:hidden">
-            <Sidebar
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              containerRef={containerRef}
-            />
-          </div>
+        <div className="fixed top-1/2 transform -translate-y-1/2 left-0 w-full z-20 sm:hidden">
+          <Sidebar
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            containerRef={containerRef}
+          />
+        </div>
+        <div className="container mx-auto sm:py-5 sm:px-0 flex knewave lg:text-xl xl:text-2xl items-center relative z-10">
           <Link to="/" className="absolute right-5 sm:left-5 w-fit">
             Animations
           </Link>
