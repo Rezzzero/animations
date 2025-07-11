@@ -3,10 +3,19 @@
   src: url("./fonts/Knewave-Regular.ttf");
 }
 
+@font-face {
+  font-family: Corben;
+  src: url("./fonts//Corben-Regular.ttf");
+}
+
 @import "tailwindcss";
 
 .knewave {
   font-family: Knewave, sans-serif;
+}
+
+.corben {
+  font-family: Corben, sans-serif;
 }
 
 body {
