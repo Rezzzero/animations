@@ -7,6 +7,7 @@ export const Main = () => {
   const { selectedTechs, handleToggle } = useSelectedTechs({
     list: MainTechList,
   });
+  const color = "blue";
   return (
     <>
       <div className="flex items-center justify-center my-5 w-full">
@@ -14,10 +15,10 @@ export const Main = () => {
           list={MainTechList}
           selectedTechs={selectedTechs}
           handleToggle={handleToggle}
-          color="blue"
+          color={color}
         />
       </div>
-      <AnimationList />
+      <AnimationList color={color} />
     </>
   );
 };
