@@ -46,7 +46,7 @@ export const Navbar = () => {
             ))}
           </ul>
         </div>
-        {[0, 1, 2, 3, 4, 5].map((i) => (
+        {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="cube" />
         ))}
       </div>

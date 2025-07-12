@@ -14,15 +14,13 @@ export const TechList = ({
   return (
     <div className="flex flex-wrap items-center gap-2 corben">
       {list.map((tech) => (
-        <>
-          <TechItem
-            key={tech}
-            tech={tech}
-            handleToggle={handleToggle}
-            color={color}
-            isSelected={selectedTechs.includes(tech)}
-          />
-        </>
+        <TechItem
+          key={tech}
+          tech={tech}
+          handleToggle={handleToggle}
+          color={color}
+          isSelected={selectedTechs.includes(tech)}
+        />
       ))}
     </div>
   );
