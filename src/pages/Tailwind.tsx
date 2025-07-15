@@ -1,4 +1,5 @@
 import { AnimationList } from "../components/animation-list/AnimationList";
+import { tailwindCSSAnimations } from "../components/animations/tailwindcss/tailwindCSSAnimations";
 import { TechList } from "../components/tech-list/TechList";
 import { TailwindTechList } from "../constants/constants";
 import { useSelectedTechs } from "../hooks/useSelectedTechs";
@@ -19,7 +20,7 @@ export const Tailwind = () => {
           color={color}
         />
       </div>
-      <AnimationList color={color} />
+      <AnimationList color={color} animations={tailwindCSSAnimations} />
     </>
   );
 };

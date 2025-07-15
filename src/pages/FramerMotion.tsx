@@ -3,6 +3,7 @@ import Drag from "../drag/Drag";
 import { FramerMotionTechList } from "../constants/constants";
 import { useSelectedTechs } from "../hooks/useSelectedTechs";
 import { AnimationList } from "../components/animation-list/AnimationList";
+import { framerMotionAnimations } from "../components/animations/framer-motion/framerMotionAnimations";
 
 export const FramerMotion = () => {
   const { selectedTechs, handleToggle } = useSelectedTechs({
@@ -23,7 +24,7 @@ export const FramerMotion = () => {
 
         <Drag />
       </div>
-      <AnimationList color={color} />
+      <AnimationList color={color} animations={framerMotionAnimations} />
     </>
   );
 };

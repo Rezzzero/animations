@@ -1,4 +1,5 @@
 import { AnimationList } from "../components/animation-list/AnimationList";
+import { cssAnimations } from "../components/animations/css/cssAnimations";
 import { TechList } from "../components/tech-list/TechList";
 import { MainTechList } from "../constants/constants";
 import { useSelectedTechs } from "../hooks/useSelectedTechs";
@@ -18,7 +19,7 @@ export const Main = () => {
           color={color}
         />
       </div>
-      <AnimationList color={color} />
+      <AnimationList color={color} animations={cssAnimations} />
     </>
   );
 };
