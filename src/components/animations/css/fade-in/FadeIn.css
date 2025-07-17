@@ -20,6 +20,10 @@
 }
 
 .fade-in-item {
+  width: 100px;
+  height: 100px;
+  background-color: #0cdcf7;
+  border-radius: 10px;
   animation: fade-in 1s ease-in-out;
   cursor: default;
 }

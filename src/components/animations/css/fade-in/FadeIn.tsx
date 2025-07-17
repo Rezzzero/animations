@@ -11,7 +11,7 @@ export const FadeIn = () => {
 
   return (
     <div className="fade-in-container" onClick={triggerAnimation}>
-      <div className={animate ? "fade-in-item" : ""}>Fade In Item</div>
+      <div className={animate ? "fade-in-item" : ""} />
     </div>
   );
 };

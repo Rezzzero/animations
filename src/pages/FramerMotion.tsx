@@ -1,5 +1,5 @@
 import { TechList } from "../components/tech-list/TechList";
-import Drag from "../drag/Drag";
+// import Drag from "../drag/Drag";
 import { FramerMotionTechList } from "../constants/constants";
 import { useSelectedTechs } from "../hooks/useSelectedTechs";
 import { AnimationList } from "../components/animation-list/AnimationList";
@@ -22,7 +22,7 @@ export const FramerMotion = () => {
           color={color}
         />
 
-        <Drag />
+        {/* <Drag /> */}
       </div>
       <AnimationList color={color} animations={framerMotionAnimations} />
     </>
