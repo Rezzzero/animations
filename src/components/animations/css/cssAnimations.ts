@@ -1,9 +1,9 @@
-import { FadeIn } from "./fade-in/FadeIn";
+import { FadeInOrOut } from "./fade-in-or-out/FadeInOrOut";
 
 export const cssAnimations = [
   {
-    title: "Fade In",
-    description: "Simple fade in animation",
-    Component: FadeIn,
+    title: "Fade In / Out",
+    description: "Simple fade in / out animation",
+    Component: FadeInOrOut,
   },
 ];

@@ -1,0 +1,49 @@
+.fade-container {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fade-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    background-color: #0cdcf7;
+    transform: translateY(0px) scale(1);
+  }
+  to {
+    opacity: 0;
+    background-color: transparent;
+    transform: translateY(-20px) scale(0.9);
+  }
+}
+
+.fade-in {
+  background-color: #0cdcf7;
+  animation: fade-in 1s ease-in-out;
+}
+
+.fade-out {
+  animation: fade-out 1s ease-in-out;
+}
