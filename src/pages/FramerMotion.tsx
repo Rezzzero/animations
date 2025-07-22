@@ -14,7 +14,7 @@ export const FramerMotion = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center mb-5 w-full">
+      <div className="flex items-center justify-center my-5 w-full">
         <TechList
           list={FramerMotionTechList}
           selectedTechs={selectedTechs}
