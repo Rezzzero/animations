@@ -13,7 +13,6 @@ export const Slider = () => {
   );
 
   const color = colors[currentItem];
-  console.log(color);
   const handleXClick = (newXDirection: 1 | -1) => {
     const nextItem = wrap(1, items.length, currentItem + newXDirection);
     setCurrentItem(nextItem);
