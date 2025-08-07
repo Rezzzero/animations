@@ -1,55 +1,83 @@
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ArrowIcon from "../../../../assets/slider-icons/arrow-icon.svg?react";
 
 export const Slide = () => {
-  const items = [1, 2, 3, 4, 5];
-  const colors = ["red", "orange", "green", "blue", "purple"];
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const baseColors = useMemo(
+    () => ["red", "orange", "green", "blue", "purple"],
+    []
+  );
+  const colors = useMemo(() => {
+    return [baseColors[baseColors.length - 1], ...baseColors, baseColors[0]];
+  }, [baseColors]);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
   const activeDirection = useRef<"X" | "Y">(null);
 
   const color = colors[currentIndex];
+
+  const slideCount = colors.length - 1;
+  useEffect(() => {
+    if (currentIndex === 0) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(colors.length - 2);
+        requestAnimationFrame(() => setIsTransitioning(true));
+      }, 200);
+    }
+
+    if (currentIndex === slideCount) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(1);
+        requestAnimationFrame(() => setIsTransitioning(true));
+      }, 200);
+    }
+  }, [currentIndex, slideCount, colors]);
+
   const handleXNextClick = () => {
-    if (currentIndex >= items.length - 1) setCurrentIndex(0);
-    else setCurrentIndex(currentIndex + 1);
+    setCurrentIndex((prev) => prev + 1);
     activeDirection.current = "X";
   };
 
   const handleYNextClick = () => {
-    if (currentIndex >= items.length - 1) setCurrentIndex(0);
-    else setCurrentIndex(currentIndex + 1);
+    setCurrentIndex((prev) => prev + 1);
     activeDirection.current = "Y";
   };
 
   const handleXPrevClick = () => {
-    if (currentIndex <= 0) setCurrentIndex(items.length - 1);
-    else setCurrentIndex(currentIndex - 1);
+    setCurrentIndex((prev) => prev - 1);
     activeDirection.current = "X";
   };
 
   const handleYPrevClick = () => {
-    if (currentIndex <= 0) setCurrentIndex(items.length - 1);
-    else setCurrentIndex(currentIndex - 1);
+    setCurrentIndex((prev) => prev - 1);
     activeDirection.current = "Y";
   };
+  const isHorizontal = activeDirection.current === "X";
 
   return (
     <div className="w-full h-full bg-black flex items-center justify-center relative">
       <div className="w-[100px] h-[100px] overflow-hidden relative">
         <div
-          className={`flex gap-5 ${
-            activeDirection.current === "X" ? "flex-row" : "flex-col"
-          } absolute left-0 top-0`}
+          className={`flex gap-5 absolute left-0 top-0 ${
+            isHorizontal ? "flex-row" : "flex-col"
+          } ${
+            isTransitioning ? "transition-transform duration-200 ease-out" : ""
+          }`}
+          style={{
+            transform: isHorizontal
+              ? `translateX(-${currentIndex * 120}px)`
+              : `translateY(-${currentIndex * 120}px)`,
+          }}
         >
-          {items.map((i) => {
+          {colors.map((color, i) => {
             return (
               <div
                 key={i}
                 className={`w-[100px] h-[100px] rounded-md transition ease-out duration-200`}
                 style={{
                   backgroundColor: color,
-                  transform: `translate${activeDirection.current}(-${
-                    currentIndex * 120
-                  }%)`,
                 }}
               />
             );
