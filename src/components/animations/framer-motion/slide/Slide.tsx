@@ -3,7 +3,7 @@ import { forwardRef, useState } from "react";
 import ArrowIcon from "../../../../assets/slider-icons/arrow-icon.svg?react";
 
 export const Slider = () => {
-  const items = [1, 2, 3, 4, 5];
+  const items = [0, 1, 2, 3, 4];
   const colors = ["red", "orange", "green", "blue", "purple"];
   const [currentItem, setCurrentItem] = useState(items[0]);
   const [xDirection, setXDirection] = useState<1 | -1>(1);
@@ -13,18 +13,15 @@ export const Slider = () => {
   );
 
   const color = colors[currentItem];
-  const handleXClick = (newXDirection: 1 | -1) => {
-    const nextItem = wrap(1, items.length, currentItem + newXDirection);
+  const handleClick = (newDirection: "x" | "y", newDelta: 1 | -1) => {
+    const nextItem = wrap(1, items.length, currentItem + newDelta);
     setCurrentItem(nextItem);
-    setXDirection(newXDirection);
-    setActiveDirection("x");
-  };
-
-  const handleYClick = (newYDirection: 1 | -1) => {
-    const nextItem = wrap(1, items.length, currentItem + newYDirection);
-    setCurrentItem(nextItem);
-    setYDirection(newYDirection);
-    setActiveDirection("y");
+    if (newDirection === "x") {
+      setXDirection(newDelta);
+    } else {
+      setYDirection(newDelta);
+    }
+    setActiveDirection(newDirection);
   };
 
   return (
@@ -33,7 +30,7 @@ export const Slider = () => {
         initial={false}
         animate={{ backgroundColor: color }}
         aria-label="Previous"
-        onClick={() => handleXClick(-1)}
+        onClick={() => handleClick("x", -1)}
         className="w-[40px] h-[40px] rounded-full flex items-center justify-center absolute left-1/3 top-1/2 -translate-y-1/2 z-10"
       >
         <ArrowIcon className="rotate-270" />
@@ -41,7 +38,7 @@ export const Slider = () => {
       <motion.button
         initial={false}
         animate={{ backgroundColor: color }}
-        onClick={() => handleXClick(1)}
+        onClick={() => handleClick("x", 1)}
         aria-label="Next"
         className="w-[40px] h-[40px] rounded-full flex items-center justify-center absolute right-1/3 top-1/2 -translate-y-1/2 z-10"
       >
@@ -51,7 +48,7 @@ export const Slider = () => {
         initial={false}
         animate={{ backgroundColor: color }}
         aria-label="Previous"
-        onClick={() => handleYClick(1)}
+        onClick={() => handleClick("y", 1)}
         className="w-[40px] h-[40px] rounded-full flex items-center justify-center absolute left-1/2 -translate-x-1/2 top-20 z-10"
       >
         <ArrowIcon />
@@ -60,7 +57,7 @@ export const Slider = () => {
         initial={false}
         animate={{ backgroundColor: color }}
         aria-label="Previous"
-        onClick={() => handleYClick(-1)}
+        onClick={() => handleClick("y", -1)}
         className="w-[40px] h-[40px] rounded-full flex items-center justify-center absolute left-1/2 -translate-x-1/2 bottom-20 z-10"
       >
         <ArrowIcon className="rotate-180" />
