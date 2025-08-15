@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import ArrowIcon from "../../../../assets/slider-icons/arrow-icon.svg?react";
+import { SlideContainer } from "./slideContainer";
 
 const STEP = 180;
 const buttonStyles =
@@ -25,13 +26,13 @@ export const Slide = () => {
         setIsTransitioning(false);
         setCurrentIndex(slideCount - 1);
         requestAnimationFrame(() => setIsTransitioning(true));
-      }, 200);
+      }, 500);
     } else if (currentIndex === slideCount) {
       setTimeout(() => {
         setIsTransitioning(false);
         setCurrentIndex(1);
         requestAnimationFrame(() => setIsTransitioning(true));
-      }, 200);
+      }, 500);
     }
   }, [currentIndex, slideCount]);
 
@@ -43,61 +44,29 @@ export const Slide = () => {
   return (
     <div className="w-full h-full bg-black flex items-center justify-center relative">
       <div className="w-[180px] h-[180px] overflow-hidden relative">
-        <div
-          className={`absolute inset-0 ${
-            activeDirection === "X"
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <div
-            className={`slider flex flex-row gap-[80px] absolute left-10 top-10 ${
-              isTransitioning
-                ? "transition-transform duration-200 ease-out"
-                : ""
-            }`}
-            style={{ transform: `translateX(-${currentIndex * STEP}px)` }}
-          >
-            {colors.map((c, i) => (
-              <div
-                key={i}
-                className="w-[100px] h-[100px] rounded-md"
-                style={{ backgroundColor: c }}
-              />
-            ))}
-          </div>
-        </div>
+        <SlideContainer
+          colors={colors}
+          isActive={activeDirection === "X"}
+          step={STEP}
+          isTransitioning={isTransitioning}
+          currentIndex={currentIndex}
+          vertical={false}
+        />
 
-        <div
-          className={`absolute inset-0 ${
-            activeDirection === "Y"
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <div
-            className={`slider flex flex-col gap-[80px] absolute left-10 top-10 ${
-              isTransitioning
-                ? "transition-transform duration-200 ease-out"
-                : ""
-            }`}
-            style={{ transform: `translateY(-${currentIndex * STEP}px)` }}
-          >
-            {colors.map((c, i) => (
-              <div
-                key={i}
-                className="w-[100px] h-[100px] rounded-md"
-                style={{ backgroundColor: c }}
-              />
-            ))}
-          </div>
-        </div>
+        <SlideContainer
+          colors={colors}
+          isActive={activeDirection === "Y"}
+          step={STEP}
+          isTransitioning={isTransitioning}
+          currentIndex={currentIndex}
+          vertical={true}
+        />
       </div>
 
       <button
         type="button"
         className={`${buttonStyles} left-1/3 top-1/2 -translate-y-1/2`}
-        onClick={() => handleMove("X", -1)}
+        onClick={() => handleMove("X", 1)}
         style={{ backgroundColor: colors[currentIndex] }}
       >
         <ArrowIcon className="rotate-270" />
@@ -106,7 +75,7 @@ export const Slide = () => {
       <button
         type="button"
         className={`${buttonStyles} right-1/3 top-1/2 -translate-y-1/2`}
-        onClick={() => handleMove("X", 1)}
+        onClick={() => handleMove("X", -1)}
         style={{ backgroundColor: colors[currentIndex] }}
       >
         <ArrowIcon className="rotate-90" />

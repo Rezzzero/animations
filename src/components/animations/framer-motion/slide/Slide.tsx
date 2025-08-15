@@ -14,7 +14,7 @@ export const Slider = () => {
 
   const color = colors[currentItem];
   const handleClick = (newDirection: "x" | "y", newDelta: 1 | -1) => {
-    const nextItem = wrap(1, items.length, currentItem + newDelta);
+    const nextItem = wrap(0, items.length, currentItem + newDelta);
     setCurrentItem(nextItem);
     if (newDirection === "x") {
       setXDirection(newDelta);
